@@ -11,7 +11,7 @@ import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcrypt';
 import { AuthenticationDto } from 'src/dto/auth.dto';
 import { LoginDto } from 'src/dto/login.dto';
-import { RegisterUserDto, UserDto } from 'src/dto/user.dto';
+import { RegisterUserDto, UserLoginDto } from 'src/dto/user.dto';
 import { User } from 'src/entities/user.entity';
 import { UserInterface } from 'src/interface/user.interface';
 
@@ -30,7 +30,7 @@ export class AuthService {
     const user = await this.validateUser(req.email, req.password);
     if (!user) throw new BadRequestException('Email or password is invalid');
     const token = await this.login(user as User);
-    const newUser = new UserDto(user as User);
+    const newUser = new UserLoginDto(user as User);
     return {
       user: newUser,
       access_token: token.access_token,

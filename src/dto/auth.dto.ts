@@ -1,9 +1,9 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsEmpty, IsString } from 'class-validator';
-import type { UserDto } from './user.dto';
+import type { UserLoginDto } from './user.dto';
 
 export class AuthenticationDto {
-  user: UserDto;
+  user: UserLoginDto;
   access_token: string;
   refresh_token: string;
 }
